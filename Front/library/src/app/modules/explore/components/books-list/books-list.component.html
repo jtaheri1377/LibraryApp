@@ -1,0 +1,9 @@
+<div class="w-full h-fit">
+  <div
+    class="w-full h-fit grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-y-5 justify-items-center justify-center"
+  >
+    <!-- book item -->
+    <app-book-item *ngFor="let item of books" [item]="item"></app-book-item>
+  </div>
+  <app-empty *ngIf="books.length<1" text="کتاب مورد نظر یافت نشد."></app-empty>
+</div>

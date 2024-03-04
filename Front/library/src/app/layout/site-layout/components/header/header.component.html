@@ -1,0 +1,74 @@
+<!-- <div class="w-full h-fit p-3">
+  <div
+    class="w-full h-fit rounded-full absolute bottom-2 left-0 bg-gradient-to-r from-cyan-500 to-blue-500 p-1 flex gap-2"
+  >
+    <button
+      matRipple
+      *ngFor="let item of items"
+      class="w-fit p-1 !m-0 !m-auto flex items-center rounded-full bg-[rgba(200,200,200,1)]"
+    >
+      <mat-icon
+        class="mat-18 text-white !text-slate-900"
+        ngClass="{'!text-slate-800': true}"
+        >home</mat-icon
+      >
+    </button>
+  </div>
+</div> -->
+
+<div
+  *ngIf="isAuthorized"
+  class="w-full h-fit pt-5 px-3 flex justify-between sm:flex-nowrap flex-wrap gap-2 z-30"
+>
+  <div class="flex gap-3">
+    <button
+      mat-mini-fab
+      *ngIf=" this.user!.type === 0"
+      class=""
+      (click)="toggleDrawer()"
+      color="primary"
+    >
+      <mat-icon class="mat-18">menu</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" routerLink="" *ngIf="showHomeIco()">
+      <mat-icon class="mat-18">home</mat-icon>
+    </button>
+  </div>
+  <app-search-box
+    *ngIf="showHomeIco()"
+    class="w-full w-full flex order-last sm:!order-none justify-center"
+  ></app-search-box>
+  <button mat-mini-fab class="" [matMenuTriggerFor]="profile" color="primary">
+    <mat-icon class="mat-18">person-circle</mat-icon>
+  </button>
+
+  <!-- profile Box -->
+
+  <mat-menu class="w-56" #profile="matMenu">
+    <div matRipple class="w-full h-fit">
+      <div class="w-full h-fit p-2 py-4 flex justify-center items-center">
+        <i class="bi bi-person-circle text-[60px] text-gray-500"></i>
+      </div>
+
+      <div class="w-full h-fit px-4 py-1 pt-3 text-gray-500 flex-col font-bold">
+        <p class="flex justify-start items-center gap-1">
+          <i class="bi bi-person-fill flex justify-center items-center"> </i>
+          <span> {{user!.fullname}}</span>
+        </p>
+        <p class="flex justify-start text-[12px] items-center gap-1">
+          <i class="bi bi-award-fill flex justify-center items-center"> </i>
+          <span> {{userRole}}</span>
+        </p>
+      </div>
+    </div>
+    <hr class="w-[90%] h-[1px] bg-gray-100 !m-auto" />
+    <button disabled="true" mat-menu-item class="font-semibold">
+      <i class="bi bi-lock-fill text-gray-500 gap-3 pl-2"> </i>
+      <span>تغییر رمز کاربری</span>
+    </button>
+    <button mat-menu-item class="font-semibold" (click)="logout()">
+      <i class="bi bi-power text-gray-500 gap-3 pl-2 text-lg font-bold"> </i>
+      <span>خروج از حساب</span>
+    </button>
+  </mat-menu>
+</div>

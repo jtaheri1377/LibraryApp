@@ -1,0 +1,46 @@
+<div
+  (click)="$event.stopPropagation(); onClickInside()"
+  class="w-full z-[9999] h-fit py-1 px-2 rounded-3xl bg-white max-w-[500px] max-h-[50vh] shadow overflow-auto"
+>
+  <div class="w-full h-fit">
+    <form
+      #htmlForm
+      class="w-full flex justify-between items-center"
+      [formGroup]="searchForm"
+      (submit)="search()"
+    >
+      <input
+        (click)="onClickInside()"
+        formControlName="search"
+        #searchInput
+        type="text"
+        placeholder="جستجوی نام، کد، زبان، مؤلف و موضوع"
+        class="outline-none text-base px-3 w-full"
+      />
+      <button
+        matRipple
+        class="flex justify-between text-blue-900 items-center rounded-full px-2 aspect-square"
+      >
+        <mat-icon class="mat-18">search</mat-icon>
+      </button>
+    </form>
+  </div>
+
+  <ng-container *ngIf="suggestionBox">
+    <div class="w-full h-fit flex flex-col" *ngFor="let item of suggestedItems">
+      <mat-divider></mat-divider>
+      <div class="w-full h-fit flex justify-between items-center p-1">
+        <span
+          (click)="$event.stopPropagation();
+           searchSuggestedItem(item.text)"
+          matRipple
+          class="w-full h-full rounded-lg px-1 py-2 text-base text-gray-500"
+          >{{item.text}}</span
+        >
+        <i
+          class="bi bi-x text-[18px] mt-1 font-bold cursor-pointer text-red-500"
+        ></i>
+      </div>
+    </div>
+  </ng-container>
+</div>

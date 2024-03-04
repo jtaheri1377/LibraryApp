@@ -1,0 +1,64 @@
+<div class="w-full max-w-[250px] h-fit relative flex flex-col">
+  <div
+    class="w-full h-fit transition cursor-pointer group border border-2 z-0 relative border-slate-200 rounded-md py-1 px-3"
+  >
+    <img
+      [src]="img"
+      class="!w-full h-fit group-hover:drop-shadow-2xl group-hover:scale-[102%] group-hover:translate-y-[-20px] transition duration-500 flex justify-center relative"
+      alt=""
+    />
+    <img
+      src="./../../../../../../assets/images/vector.png"
+      class="absolute skew-y-[-17deg] text-[17px] group-hover:translate-y-[-20px] leading-relaxed font-semibold text-center transition duration-500 w-[50%] top-[74%] right-[16%]"
+    />
+
+    <p
+      class="absolute skew-y-[-15deg] text-[17px] group-hover:translate-y-[-20px] leading-relaxed font-semibold text-center transition duration-500 w-[65%] top-[27%] right-[9%]"
+    >
+      {{item?.name}}
+    </p>
+    <p
+      class="absolute skew-y-[-15deg] transition duration-500 text-[11px] group-hover:translate-y-[-20px] leading-relaxed font-semibold text-center w-[63%] top-[62%] right-[8%]"
+    >
+      {{item?.author}}
+    </p>
+    <div
+      *ngIf="user.type===0"
+      class="w-full h-fit absolute bottom-[-5px] z-20 right-0 group-hover:opacity-100 group-hover:translate-y-[-30px] opacity-0 transition flex gap-4 justify-center"
+    >
+      <button mat-mini-fab color="primary">
+        <mat-icon class="mat-18">edit</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn">
+        <mat-icon class="mat-18">delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="w-full h-fit flex flex-col justify-start">
+    <div
+      class="text-slate-500 font-medium text-sm flex justify-evenly mt-1 gap-1"
+    >
+      <div
+        class="w-full h-fit p-2 rounded bg-green-100 text-center text-green-700"
+      >
+        {{item?.language}}
+      </div>
+      <div
+        class="w-full h-fit p-2 rounded bg-green-100 text-center text-green-700"
+      >
+        {{item?.volumeAmount}} جلدی
+      </div>
+    </div>
+    <div
+      class="w-full h-fit text-slate-500 max-h-[64px] p-2 mt-2 rounded bg-blue-100 flex justify-center gap-1"
+    >
+      {{item?.subject}}
+    </div>
+    <div
+      class="w-full h-fit text-red-900 max-h-[64px] p-2 mt-2 rounded bg-red-100 flex justify-center gap-1"
+    >
+      {{item?.code}}
+    </div>
+  </div>
+</div>

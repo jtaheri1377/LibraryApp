@@ -1,0 +1,21 @@
+<mat-drawer-container style="height: 100%; width: 100%;" [hasBackdrop]="true">
+  <mat-drawer #drawer mode="over">
+    <div
+      class="h-fit w-[300px] grid grid-cols-2 gap-4 p-4 bg-[rgb(253,253,255)]"
+    >
+      <div
+        *ngFor="let item of options"
+        (click)="onClickitem(item.role);drawer.toggle()"
+        class="w-full flex flex-col group gap-2 hover:scale-105 justify-center transition hover:shadow-xl items-center cursor-pointer gap-1 aspect-square border text-gray-400 border-gray-100 hover:text-blue-500 hover:border-blue-100 border-2 rounded-md p-2"
+      >
+        <i class="bi text-[33px]" [ngClass]="item.icon"></i>
+        <span>{{item.text}}</span>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header class="absolute top-0 left-0 w-full"></app-header>
+    <app-main></app-main>
+    <!-- <app-save-book></app-save-book> -->
+  </mat-drawer-content>
+</mat-drawer-container>

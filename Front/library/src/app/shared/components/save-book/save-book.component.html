@@ -1,0 +1,108 @@
+<div class="w-full h-fit flex flex-col gap-1">
+  <form [formGroup]="bookForm" (submit)="save()">
+    <div class="text-base font-bold flex gap-2 text-blue-800 p-5 pb-2">
+      <i class="bi bi-book text-[30px]"></i>
+      <span class="flex items-center">ثبت کتاب</span>
+    </div>
+    <mat-divider></mat-divider
+    ><mat-dialog-content>
+      <div
+        class="w-full h-fit border border-dashed border-gray-300 border-2 rounded-lg p-3 flex flex-col gap-1"
+      >
+        <textarea
+          #STTInput
+          type="number"
+          placeholder="تایپ صوتی"
+          class="w-full !rounded-lg h-20 outline-none bg-slate-100 p-3"
+          matInput
+        ></textarea>
+
+        <div class="w-full h-fit flex justify-center gap-5 p-1">
+          <button
+            type="button"
+            (click)="recognize()"
+            mat-mini-fab
+            [color]="recording ?'accent':'primary'"
+          >
+            <mat-icon class="mat-18" *ngIf="!recording">mic_none</mat-icon>
+            <mat-icon class="mat-18" *ngIf="recording">mic</mat-icon>
+          </button>
+          <button
+            type="button"
+            mat-mini-fab
+            color="primary"
+            class="flex items-center"
+            matTooltip="جای گذاری فیلدها"
+            (click)="putInFields(STTInput.value)"
+          >
+            <i class="bi bi-magic text-[20px] flex items-center"></i>
+          </button>
+        </div>
+      </div>
+      <div class="w-full grid grid-cols-1 sm:grid-cols-2 sm:gap-x-2 pt-4">
+        <mat-form-field class="w-full">
+          <mat-label>نام کتاب</mat-label>
+          <input matInput formControlName="name" placeholder="نام کتاب" />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>نویسنده</mat-label>
+          <input matInput formControlName="author" placeholder="نویسنده" />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>زبان</mat-label>
+          <input matInput formControlName="language" placeholder="زبان" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>تعداد جلد</mat-label>
+          <input
+            type="number"
+            formControlName="volumeAmount"
+            matInput
+            placeholder="تعداد جلد"
+          />
+        </mat-form-field>
+
+        <div class="w-full flex sm:col-span-2">
+          <mat-form-field class="w-full h-full subjectInput">
+            <mat-label>موضوع</mat-label>
+            <span matTextPrefix>
+              <span class="flex">
+                <span> <mat-icon matSuffix>add</mat-icon></span>
+                <span class="text-sm" matSuffix>1515155415</span>
+                <div class="!w-6 flex justify-center aspect-square" matSuffix>
+                  <mat-spinner
+                    class="!w-[calc(100%-8px)] !h-full"
+                  ></mat-spinner>
+                </div>
+              </span>
+              &nbsp;
+            </span>
+            <input
+              matInput
+              formControlName="subject"
+              [(ngModel)]="subjectInput"
+              placeholder="موضوع"
+            />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <div class="w-full h-fit p-1 flex justify-end gap-3 p-5 pt-0">
+        <button type="button" mat-raised-button (click)="close()">
+          انصراف
+        </button>
+        <button
+          type="submit"
+          mat-raised-button
+          [disabled]="bookForm.invalid"
+          color="primary"
+        >
+          ذخیره
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </form>
+</div>

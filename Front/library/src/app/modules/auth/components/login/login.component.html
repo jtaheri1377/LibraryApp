@@ -1,0 +1,72 @@
+<div class="w-full h-full related ">
+  <img
+    src="./../../../../../assets/images/A-library-Image-Credit-Depositphotos-maxxyustas.jpg"
+    alt=""
+    class="w-full h-full object-cover"
+  />
+  <div
+    class="w-full h-full backdrop-blur-[0.5px] sm:mt-16 mt-32 p-5 flex flex-col !justify-start sm:flex-row sm:justify-between gap-5 items-center absolute top-0 left-0"
+  >
+    <div class="w-full h-fit sm:h-full flex justify-center">
+      <div
+        class="w-fit h-fit p-4 pb-3 rounded-md flex flex-col pt-5 bg-[rgba(240,240,240,0.5)] backdrop-blur-sm gap-2 items-center justify-start"
+      >
+        <span
+          style="font-family: quran, sans-serif;"
+          class="text-slate-800 text-[20px] pt-2 font-bold"
+          >و فیها ما تشتهیه الأنفس و تلذّ الأعین</span
+        ><img
+          src="./../../../../../assets/images/vector-flower-bottom2.png"
+          alt=""
+          class="!w-60"
+        />
+      </div>
+    </div>
+    <div class="w-fit h-fit p-4 sm:p-6 md:p-36">
+      <div
+        class="w-fit h-fit p-5 shadow-md rounded-lg bg-[rgba(240,240,240,0.4)] backdrop-blur-md"
+      >
+        <div
+          class="w-full h-fit flex justify-center py-3 items-center gap-2 text-base font-bold backdrop-blur-md"
+        >
+          <p>
+            <i
+              class="bi bi-person-fill-lock flex items-center text-blue-900 text-[25px]"
+            ></i>
+          </p>
+          <span>ورود به سامانه</span>
+        </div>
+        <form class="w-full" [formGroup]="loginForm" (submit)="login()">
+          <mat-form-field class="w-full">
+            <mat-label>نام کاربری</mat-label>
+            <input
+              type="text"
+              formControlName="username"
+              matInput
+              placeholder="نام کاربری"
+            />
+            <mat-hint class="text-red-900">این فیلدالزامی است!</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>کلمه عبور</mat-label>
+            <input
+              type="password"
+              formControlName="password"
+              matInput
+              placeholder="کلمه عبور"
+            />
+            <mat-hint class="text-red-900">این فیلدالزامی است!</mat-hint>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            type="submit"
+            color="primary"
+            class="w-full mt-8 mb-5"
+          >
+            ورود
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

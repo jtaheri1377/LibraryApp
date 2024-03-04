@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import 'ngx-toastr/toastr';
+// @import '~ngx-toastr/toastr-bs4-alert';
+@import "tailwindcss/utilities";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+@font-face {
+  font-family: yekan;
+  src: url(./assets/fonts//byekan.woff);
+}
+
+@font-face {
+  font-family: quran;
+  src: url(./assets/fonts/Neirizi.ttf);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  font-family: yekan, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
