@@ -1,10 +1,16 @@
 
+using Autofac.Core;
 using library._01_Domain.Interfaces;
 using library._02_Application.Services;
 using library._03_Infrastructure.Extentions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Text.Json.Serialization;
 using TenderNetCore.Config.Extentions;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,10 +26,20 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerTokenField();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.Configure<JsonOptions>(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-});
+//builder.Services.Configure<JsonOptions>(options =>
+//{
+//    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;    
+//});
+builder.Services.AddControllers(c => c.Conventions.Add(new ApiExplorerGroupPerVersionConvention()))
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver
+                    {
+                        NamingStrategy = new CamelCaseNamingStrategy(),
+                    };
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;                    
+                });
 
 var app = builder.Build();
 
@@ -52,3 +68,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public class ApiExplorerGroupPerVersionConvention : IControllerModelConvention
+{
+    public void Apply(ControllerModel controller)
+    {
+        var controllerNamespace = controller.ControllerType.Namespace;
+        var apiVersion = controllerNamespace?.Split('.').First().ToLower();
+
+        controller.ApiExplorer.GroupName = apiVersion;
+    }
+}
