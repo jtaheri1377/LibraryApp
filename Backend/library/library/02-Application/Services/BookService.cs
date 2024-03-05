@@ -60,8 +60,11 @@ namespace library._02_Application.Services
             //var topLevelSubjects =_cntxt. subjects.Where(x => x.parentId == null).ToList();
             //return topLevelSubjects;
 
-            var location1 = await _cntxt.subjects.Include(s => s.children)
-                                      .ThenInclude(c => c.children).ToListAsync();
+            var location1 = await _cntxt.subjects
+                .Where(a => a.parentId == null)
+                .Include(s => s.children)
+                .ThenInclude(c => c.children)
+                .ToListAsync();
             //.FirstOrDefaultAsync(s => s.name == "Iran");
 
             //var subjects = await _cntxt.subjects.Include(s => s.children).ToListAsync();

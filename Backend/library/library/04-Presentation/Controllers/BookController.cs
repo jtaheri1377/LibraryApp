@@ -59,9 +59,10 @@ namespace library.Controllers
         }
 
         [HttpGet("allSubjects")]
-        public async Task<List<Subject>> GetAllSubjects()
+        public async Task<IList<Subject>> GetAllSubjects()
         {
-            return await _bookService.GetAllSubjects();
+            var result = await _bookService.GetAllSubjects();
+            return result;
         }
 
         [HttpGet("addSubjects")]
