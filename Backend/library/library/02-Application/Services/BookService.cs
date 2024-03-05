@@ -72,15 +72,43 @@ namespace library._02_Application.Services
         {
             var subject1 = new Subject { name = "Iran" };
             var subject2 = new Subject { name = "Tehran" };
-            var subject3 = new Subject { name = "Karaj" };
-            var subject4 = new Subject { name = "Isfahan" };
+            //var subject3 = new Subject { name = "Karaj" };
+            //var subject4 = new Subject { name = "Isfahan" };
 
-            subject1.children = new List<Subject> { subject2, subject4 };
-            subject2.children = new List<Subject> { subject3 };
+            subject1.children = new List<Subject> { subject2 };
+            //subject2.children = new List<Subject> { subject3 };
 
-            _cntxt.subjects.AddRange(subject1, subject2, subject3, subject4);
+            //var newsubject = _cntxt.subjects.Where(x => x.name == "Iran").First();
+            //var subject2 = new Subject { name = "Tehran" };
+
+            _cntxt.subjects.Add(subject1);
             _cntxt.SaveChanges();
             return true;
+
+
+            //var newsubject = _cntxt.subjects.Include(s => s.children).FirstOrDefault(x => x.name == "Iran");
+
+            //if (newsubject != null)
+            //{
+            //    var subject2 = new Subject { name = "Tehran" parentId = newsubject.id };
+
+            //    if (newsubject.children == null)
+            //    {
+            //        newsubject.children = new List<Subject>();
+            //    }
+
+            //    newsubject.children.Add(subject2);
+
+            //    _cntxt.subjects.Add(subject2);
+
+
+            //    await _cntxt.SaveChangesAsync();
+
+            //    return true;
+            //}
+
+            //return false;
+
         }
 
         public async Task<string> GenerateCode()

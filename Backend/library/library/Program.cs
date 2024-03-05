@@ -20,10 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerTokenField();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.Configure<JsonOptions>(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-});
+ 
 
 var app = builder.Build();
 
