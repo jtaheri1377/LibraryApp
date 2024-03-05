@@ -3225,19 +3225,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mj.mousavi\\.nuget\\packages\\": {}
+    "C:\\Users\\Amiralmomenin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Education\\Project\\Taheri\\LibraryApp\\Backend\\library\\library\\library.csproj",
+      "projectUniqueName": "D:\\AngularProjects\\Library\\Backend\\library\\library\\library.csproj",
       "projectName": "library",
-      "projectPath": "D:\\Education\\Project\\Taheri\\LibraryApp\\Backend\\library\\library\\library.csproj",
-      "packagesPath": "C:\\Users\\mj.mousavi\\.nuget\\packages\\",
-      "outputPath": "D:\\Education\\Project\\Taheri\\LibraryApp\\Backend\\library\\library\\obj\\",
+      "projectPath": "D:\\AngularProjects\\Library\\Backend\\library\\library\\library.csproj",
+      "packagesPath": "C:\\Users\\Amiralmomenin\\.nuget\\packages\\",
+      "outputPath": "D:\\AngularProjects\\Library\\Backend\\library\\library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mj.mousavi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Amiralmomenin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3245,7 +3245,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\Education\\Project\\Tax": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\telerik.ui.for.AspNet.core": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
