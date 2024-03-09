@@ -32,6 +32,10 @@ namespace library._03_Infrastructure.Config
 
             builder.Navigation(s => s.parent)
                    .UsePropertyAccessMode(PropertyAccessMode.Property); // یا Field در صورتی که میل به استفاده از فیلدهای public داشته باشید
+
+            builder.HasMany(a => a.Books)
+                .WithOne(a => a.subject)
+                .HasForeignKey(a => a.subjectId);
         }
     }
 
