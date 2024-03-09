@@ -15,5 +15,6 @@ namespace library._01_Domain.Interfaces
 
         public Task<string> GenerateCode();
         public Task<bool> SaveSubject(Subject subject);
+        public   Task<bool> DeleteSubject(int id);
     }
 }

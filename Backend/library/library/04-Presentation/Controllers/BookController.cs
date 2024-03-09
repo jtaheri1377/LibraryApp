@@ -59,9 +59,10 @@ namespace library.Controllers
         }
 
         [HttpGet("allSubjects")]
-        public async Task<List<Subject>> GetAllSubjects()
+        public async Task<IList<Subject>> GetAllSubjects()
         {
-            return await _bookService.GetAllSubjects();
+            var result = await _bookService.GetAllSubjects();
+            return result;
         }
 
         [HttpGet("addSubjects")]
@@ -76,10 +77,16 @@ namespace library.Controllers
             return await _bookService.GenerateCode();
         }
 
-        [HttpGet("SaveSubject")]
+        [HttpPost("SaveSubject")]
         public async Task<bool> SaveSubject([FromBody] Subject subject)
         {
             return await _bookService.SaveSubject(subject);
+        }
+        
+        [HttpDelete("DeleteSubject/{id}")]
+        public async Task<bool> DeleteSubject(int id)
+        {
+            return await _bookService.DeleteSubject(id);
         }
     }
 }

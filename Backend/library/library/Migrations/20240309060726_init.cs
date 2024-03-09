@@ -10,24 +10,14 @@ namespace library.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "books",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    author = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    language = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    volumeAmount = table.Column<int>(type: "int", nullable: false),
-                    code = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_books", x => x.id);
-                });
+            migrationBuilder.DropTable(
+                name: "books");
 
+            migrationBuilder.DropTable(
+                name: "users");
+
+            migrationBuilder.DropTable(
+                name: "subjects");
             migrationBuilder.CreateTable(
                 name: "subjects",
                 columns: table => new
@@ -35,6 +25,7 @@ namespace library.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     parentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -63,6 +54,35 @@ namespace library.Migrations
                     table.PrimaryKey("PK_users", x => x.id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "books",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    language = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    subjectId = table.Column<int>(type: "int", nullable: false),
+                    volumeAmount = table.Column<int>(type: "int", nullable: false),
+                    code = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_books", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_books_subjects_subjectId",
+                        column: x => x.subjectId,
+                        principalTable: "subjects",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_books_subjectId",
+                table: "books",
+                column: "subjectId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_subjects_parentId",
                 table: "subjects",
@@ -76,10 +96,10 @@ namespace library.Migrations
                 name: "books");
 
             migrationBuilder.DropTable(
-                name: "subjects");
+                name: "users");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "subjects");
         }
     }
 }

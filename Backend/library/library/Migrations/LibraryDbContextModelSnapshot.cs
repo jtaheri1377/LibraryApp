@@ -46,14 +46,15 @@ namespace library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("subject")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("subjectId")
+                        .HasColumnType("int");
 
                     b.Property<int>("volumeAmount")
                         .HasColumnType("int");
 
                     b.HasKey("id");
+
+                    b.HasIndex("subjectId");
 
                     b.ToTable("books");
                 });
@@ -65,6 +66,10 @@ namespace library.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -107,6 +112,17 @@ namespace library.Migrations
                     b.ToTable("users");
                 });
 
+            modelBuilder.Entity("library._01_Domain.Entities.Book", b =>
+                {
+                    b.HasOne("library._01_Domain.Entities.Subject", "subject")
+                        .WithMany("Books")
+                        .HasForeignKey("subjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("subject");
+                });
+
             modelBuilder.Entity("library._01_Domain.Entities.Subject", b =>
                 {
                     b.HasOne("library._01_Domain.Entities.Subject", "parent")
@@ -118,6 +134,8 @@ namespace library.Migrations
 
             modelBuilder.Entity("library._01_Domain.Entities.Subject", b =>
                 {
+                    b.Navigation("Books");
+
                     b.Navigation("children");
                 });
 #pragma warning restore 612, 618

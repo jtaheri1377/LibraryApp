@@ -6,7 +6,8 @@
         public string name { get; set; }
         public string author { get; set; }
         public string language { get; set; }
-        public string subject { get; set; }
+        public int subjectId { get; set; }
+        public Subject subject { get; set; }
         public int volumeAmount { get; set; }
         public string code { get; set; }
     }

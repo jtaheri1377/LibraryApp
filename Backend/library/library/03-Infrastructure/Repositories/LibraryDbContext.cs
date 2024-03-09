@@ -21,9 +21,13 @@ namespace library._03_Infrastructure.Repositories
         //        .HasForeignKey(l => l.parentId)
         //        .OnDelete(DeleteBehavior.Restrict);
         //}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Subject>()
+                .HasMany(t => t.Books)
+                .WithOne(b => b.subject)
+                .HasForeignKey(b => b.subjectId);
+
             modelBuilder.Entity<Subject>()
                 .HasOne(s => s.parent)
                 .WithMany(s => s.children)
@@ -32,6 +36,7 @@ namespace library._03_Infrastructure.Repositories
 
             base.OnModelCreating(modelBuilder);
         }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
